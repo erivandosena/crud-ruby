@@ -1,0 +1,17 @@
+<h1>Nova Tarefa</h1>
+
+<%= form_with(model: @task, url: tasks_path, local: true, class: 'row g-3') do |form| %>
+  <div class="col-md-6">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="col-md-6">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+  <div class="col-12">
+    <%= form.submit 'Create Task', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', tasks_path, class: 'btn btn-secondary' %>

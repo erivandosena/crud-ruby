@@ -1,0 +1,41 @@
+### How to use:
+#
+# Docker:
+# docker login
+# docker build -t erivando/crud-tarefas-ruby:latest .
+# docker tag erivando/crud-tarefas-ruby:latest erivando/crud-tarefas-ruby:v1.0.0
+# docker push erivando/crud-tarefas-ruby:v1.0.0
+#
+# Compose V2 (para Compose V1 use: docker-compose ...):
+# docker compose build --no-cache && docker compose up -d
+# docker compose logs -f
+# docker exec -it crud-tarefas /bin/bash
+# docker compose down
+
+version: '3.9'
+
+services:
+  app-build:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - COMMIT_SHA=2428676974207265762d7061727365202d2d73686f7274204845414429
+        - VERSION=1.0.0
+    image: erivando/crud-tarefas-ruby:debug
+    container_name: crud-tarefas
+    restart: always
+    ports:
+      - "8030:80"
+    networks:
+      - development
+
+volumes:
+  postgresql_data:
+    driver: local
+    
+networks:
+ development:
+   name: development
+   external: true
+   driver: bridge
