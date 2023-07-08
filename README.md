@@ -59,14 +59,22 @@ Things you may want to cover:
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-
+Docker
 Linux Debian
 Ruby
 Bootstrap
 Nginx Server
 
+## Install Docker
+```bash
+curl https://releases.rancher.com/install-docker/20.10.sh | sh
 ```
-Give examples
+#### To Install Docker in WSL/2
+```bash
+echo 'sudo gpasswd -a $USER docker' >> ~/.bashrc
+echo 'sudo chmod 666 /var/run/docker.sock' >> ~/.bashrc
+echo 'sudo /etc/init.d/docker start' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 ### Installing
