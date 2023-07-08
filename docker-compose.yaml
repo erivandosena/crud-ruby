@@ -3,7 +3,7 @@
 version: '3.9'
 
 services:
-  app-build:
+  crud-tarefas:
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -11,7 +11,7 @@ services:
         - "1.0.0"
         - 2428676974207265762d7061727365202d2d73686f7274204845414429
     image: erivando/crud-tarefas-ruby:debug
-    container_name: crud-tarefas
+    container_name: crud-tarefas-ruby
     restart: always
     volumes:
       - db_data:/app/db
@@ -23,9 +23,7 @@ services:
 volumes:
   db_data:
     driver: local
-    
+
 networks:
- development:
-   name: development
-   external: false
-   driver: bridge
+  development:
+    driver: bridge
