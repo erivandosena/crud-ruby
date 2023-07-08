@@ -60,9 +60,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Linux Debian
-Ruby 2.7.4
+Ruby
 Bootstrap
-Server Nginx
+Nginx Server
 
 ```
 Give examples
