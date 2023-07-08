@@ -13,7 +13,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Aplicação de crud básico em Ruby
     <br> 
 </p>
 
@@ -105,7 +105,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## 🔧 Running the tests <a name = "tests"></a>
 
-##### Docker:
+##### Build image:
 ```bash
 docker build -f ./Dockerfile -t erivando/crud-tarefas-ruby:latest --build-arg VERSION=1.0.0 --build-arg COMMIT_SHA=$(git rev-parse HEAD) --no-cache .
 docker tag erivando/crud-tarefas-ruby:latest erivando/crud-tarefas-ruby:v1.0.0
@@ -116,8 +116,8 @@ docker push erivando/crud-tarefas-ruby:v1.0.0
 ##### Compose V2 (para Compose V1 use: docker-compose ...):
 ```bash
 docker compose build --no-cache && docker compose up -d
-docker compose logs -f
-docker exec -it crud-tarefas /bin/bash
+docker compose exec crud-tarefas bash
+docker compose logs -f -t crud-tarefas
 docker compose down
 ```
 
@@ -139,8 +139,12 @@ Give an example
 
 ## 🎈 Usage <a name="usage"></a>
 
+##### Run image:
 ```bash
-docker run -it --rm -d -p 8030:3000 --name crud-tarefas -v /mnt:/app/db erivando/crud-tarefas-ruby:latest
+docker run -it --rm -d -p 8030:80 --name crud-tarefas --network=bridge erivando/crud-tarefas-ruby:latest
+docker exec -it crud-tarefas /bin/bash
+docker logs -f --tail --until=2s crud-tarefas
+docker rm -f crud-tarefas
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
