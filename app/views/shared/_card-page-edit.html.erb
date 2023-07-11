@@ -1,0 +1,66 @@
+<div class="relative w-480 m-auto border-2 shadow-lg rounded-xl items-center">
+  <!-- Image -->
+  <div class="flex h-28 bg-blue-700 rounded-xl items-center justify-center">
+    <h1 class="absolute mx-auto text-center right text-2xl text-white">
+      Editing Page
+    </h1>
+  </div>
+
+  <!-- Description -->
+  <div class="p-2 border-b-2">
+    <h6>
+
+      <%= form_with(model: @page, url: page_path(@page), local: true, method: :patch, class: 'row g-3') do |form| %>
+        <div class="col-md-6">
+          <%= form.label :title, class: 'block text-sm font-medium text-gray-700' %>
+          <%= form.text_field :title, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' %>
+        </div>
+        <div class="col-md-6">
+          <%= form.label :description, class: 'block text-sm font-medium text-gray-700' %>
+          <%= form.text_area :description, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' %>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="border-2 border-blue-600 rounded-2xl text-blue-600 shadow-sm p-1 px-2 m-2">
+            <%= form.submit 'Update Page', class: 'text-blue-600 cursor-pointer' %>
+          </button>
+        </div>
+      <% end %>
+
+    </h6>
+  </div>
+
+  <!-- Tech stack used -->
+  <div class="flex flex-wrap items-center m-2">
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #PHP
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Python
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #React
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #GoLang
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Redux
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Javascript
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Java
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Ruby on Rails
+    </span>
+  </div>
+
+  <!-- Links -->
+  <div class="flex flex-wrap items-center rounded-b-xl border-t-2 bg-white">
+    <button class="border rounded-2xl bg-blue-600 text-white shadow-sm p-1 px-2 m-2">
+      <%= link_to 'To go back', pages_path, class: 'text-white' %>
+    </button>
+  </div>
+</div>

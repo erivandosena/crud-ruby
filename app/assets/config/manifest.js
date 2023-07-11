@@ -2,5 +2,4 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
-//= link bootstrap.min.css
-//= link bootstrap.min.js
+//= link_tree ../builds
