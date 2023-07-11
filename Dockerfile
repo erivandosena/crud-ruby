@@ -1,39 +1,54 @@
-# Erivando Sena<erivandosena@gmail.com>
+FROM phusion/passenger-full:2.2.0
 
-FROM ruby:2.7.4
+RUN apt-get update && apt-get install -y libnginx-mod-http-passenger=1:6.0.18-1~focal1
 
-RUN apt-get update -y \
-    && apt-get install -y nginx
-
-COPY config/docker/nginx.conf /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
+RUN rm -f /etc/service/nginx/down
+RUN rm -f /etc/service/redis/down
+
+ADD config/nginx.conf /etc/nginx/sites-enabled/app-crud.conf
+
+RUN mkdir -p /var/run/passenger-instreg
+
+USER app
 
 ARG VERSION
 ARG COMMIT_SHA
 ENV APP_VERSION=$VERSION
 ENV COMMIT_SHA=$COMMIT_SHA
+ENV NODE_MODULES_CACHE true
+ENV RAILS_ENV=production
+ENV BUNDLE_WITHOUT="development test"
+ENV APP_HOME /home/app/app-crud
 
-WORKDIR /app
+RUN mkdir -p ${APP_HOME}
 
-COPY . .
+WORKDIR ${APP_HOME}
+
+COPY --chown=app:app Gemfile Gemfile.lock .
 
 RUN bundle install
 
-RUN bundle exec rake db:create RAILS_ENV=development\
-    && bundle exec rake db:migrate RAILS_ENV=development\
-    && bundle exec rake assets:precompile RAILS_ENV=development
+COPY --chown=app:app . .
 
-VOLUME [ "/app/db" ]
+RUN SECRET_KEY_BASE=$(bundle exec rake secret)
+RUN bundle exec rake db:create \
+    && bundle exec rake db:migrate \
+    && bundle exec rake assets:precompile
+
+VOLUME [ "${APP_HOME}/db" ]
+
+USER root
 
 EXPOSE 80
 
 LABEL org.opencontainers.image.title="Official Ruby image" \
     org.opencontainers.image.description="Aplicativo crud básico em Ruby" \
-    org.opencontainers.image.url="https://hub.docker.com/r/erivando/crud-tarefas-ruby" \
+    org.opencontainers.image.url="https://hub.docker.com/r/erivando/app-crud-ruby" \
     org.opencontainers.image.source="https://github.com/erivandosena/crud-ruby" \
     org.opencontainers.image.version=$APP_VERSION \
     org.opencontainers.image.revision=$COMMIT_SHA \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.maintainer="Erivando Sena<erivandosena@gmail.com>"
 
-CMD service nginx start && bundle exec rails server -b 0.0.0.0
+CMD ["/sbin/my_init"]

@@ -32,8 +32,10 @@
 
 ## 🧐 About <a name = "about"></a>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Quando o Rails recebe a URL, ele primeiro procura a URI no arquivo, que define, por padrão, todas as rotas da aplicação. Cada URI válido é mapeado para uma função localizada dentro de um Controlador, que é invocado para fornecer uma resposta à solicitação. 
+
+![Ruby on Rails](https://softcover.s3.amazonaws.com/636/ruby_on_rails_tutorial_7th_edition/images/figures/mvc_detailed.png)
+
 
 Things you may want to cover:
 
@@ -115,17 +117,17 @@ End with an example of getting some data out of the system or using it for a lit
 
 ##### Build image:
 ```bash
-docker build -f ./Dockerfile -t erivando/crud-tarefas-ruby:latest --build-arg VERSION=1.0.0 --build-arg COMMIT_SHA=$(git rev-parse HEAD) --no-cache .
-docker tag erivando/crud-tarefas-ruby:latest erivando/crud-tarefas-ruby:v1.0.0
+docker build -f ./Dockerfile -t erivando/app-crud-ruby:latest --build-arg VERSION=1.0.0 --build-arg COMMIT_SHA=$(git rev-parse HEAD) --no-cache .
+docker tag erivando/app-crud-ruby:latest erivando/app-crud-ruby:v1.0.0
 docker login
-docker push erivando/crud-tarefas-ruby:v1.0.0
+docker push erivando/app-crud-ruby:v1.0.0
 ```
 
 ##### Compose V2 (para Compose V1 use: docker-compose ...):
 ```bash
 docker compose build --no-cache && docker compose up -d
-docker compose exec crud-tarefas bash
-docker compose logs -f -t crud-tarefas
+docker compose exec app-crud bash
+docker compose logs -f -t app-crud
 docker compose down
 ```
 
@@ -149,15 +151,15 @@ Give an example
 
 ##### Run image:
 ```bash
-docker run -it --rm -d -p 8030:80 --name crud-tarefas --network=bridge erivando/crud-tarefas-ruby:latest
-docker exec -it crud-tarefas /bin/bash
-docker logs -f --tail --until=2s crud-tarefas
-docker rm -f crud-tarefas
+docker run -it --rm -d -p 8030:80 --name app-crud --network=bridge erivando/app-crud-ruby:latest
+docker exec -it app-crud /bin/bash
+docker logs -f --tail --until=2s app-crud
+docker rm -f app-crud
 ```
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
-Image Docker: https://hub.docker.com/r/erivando/crud-tarefas-ruby
+Image Docker: https://hub.docker.com/r/erivando/app-crud-ruby
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

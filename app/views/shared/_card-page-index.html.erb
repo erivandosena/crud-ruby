@@ -1,0 +1,76 @@
+<div class="relative w-480 m-auto border-2 shadow-lg rounded-xl items-center">
+  <!-- Image -->
+  <div class="flex h-28 bg-blue-700 rounded-xl items-center justify-center">
+    <h1 class="absolute mx-auto text-center right text-2xl text-white">
+      All Articles
+    </h1>
+  </div>
+
+  <!-- Description -->
+  <div class="p-2 border-b-2">
+    <h6>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pages.each do |page| %>
+            <tr>
+              <td><%= page.title %></td>
+              <td><%= page.description %></td>
+              <td>
+                <button class="border-2 border-blue-600 rounded-2xl text-blue-600 shadow-sm p-1 px-2 m-2">
+                  <%= link_to 'Edit', edit_page_path(page), class: 'text-blue-600' %>
+                </button>
+                <button class="border-2 border-blue-600 rounded-2xl text-blue-600 shadow-sm p-1 px-2 m-2">
+                  <%= link_to 'Delete', page_path(page), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-blue-600' %>
+                </button>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </h6>
+  </div>
+
+  <!-- Tech stack used -->
+  <div class="flex flex-wrap items-center m-2">
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Python
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #React
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Redux
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Javascript
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Ruby on Rails
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #PHP
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Java
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #GoLang
+    </span>
+  </div>
+
+  <!-- Links -->
+  <div class="flex flex-wrap items-center rounded-b-xl border-t-2 bg-white">
+    <button class="border rounded-2xl bg-blue-600 text-white shadow-sm p-1 px-2 m-2">
+      <%= link_to 'New Page', new_page_path, class: 'text-white' %>
+    </button>
+  </div>
+</div>
