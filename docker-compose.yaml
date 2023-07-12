@@ -14,20 +14,13 @@ services:
     volumes:
       - ./log:/home/app/app-crud/log
       - db_data:/home/app/app-crud/db
-    secrets:
-      - source: master_key
-        target: /home/app/app-crud/config/master.key
     ports:
       - "8001:80"
-
-secrets:
-  master_key:
-    file: ./config/master.key
 
 volumes:
   db_data:
     driver: local
-
+    
 networks:
   development:
     driver: bridge
