@@ -32,11 +32,11 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
   end
-
+  
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-    redirect_to pages_path
+    redirect_to pages_path, notice: t('shared.card_page_index.page_deleted')
   end
 
   private
@@ -44,4 +44,5 @@ class PagesController < ApplicationController
   def page_params
     params.require(:page).permit(:title, :description)
   end
+  
 end

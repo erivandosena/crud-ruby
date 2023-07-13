@@ -1,0 +1,65 @@
+# Arquivos no diretório config/locales são usados para internacionalização
+# e são carregados automaticamente pelo Rails. Se você quiser usar outras localidades
+# do que inglês, adicione os arquivos necessários neste diretório.
+#
+# Para usar as localidades, use `I18n.t`:
+#
+# I18n.t "olá"
+#
+# Em visualizações, isso é alias apenas para `t`:
+#
+# <%= t("olá") %>
+#
+# Para usar um locale diferente, defina-o com `I18n.locale`:
+#
+# I18n.locale = :es
+#
+# Isso usaria as informações em config/locales/es.yml.
+#
+# As chaves a seguir devem ter escape, caso contrário, não serão recuperadas por
+# o back-end I18n padrão:
+#
+# true, false, on, off, sim, não
+#
+# Em vez disso, coloque-os entre aspas simples.
+#
+# pt:
+# "true": "foo"
+#
+# Para saber mais, leia o guia Rails Internationalization
+# disponível em https://guides.rubyonrails.org/i18n.html.
+
+pt-BR:
+  confirm_delete: Tem certeza que deseja excluir?
+  shared:
+    notices:
+      page_deleted: "Página do artigo excluída com sucesso."
+    card_page_edit:
+      editing_page: "Editando Página"
+      title_label: "Título"
+      description_label: "Descrição"
+      update_page: "Atualizar Página"
+      to_go_back: "Voltar"
+    card_page_index:
+      page_deleted: "Página excluída com sucesso."
+      all_articles: Todos os Artigos
+      title: Título
+      description: Descrição
+      actions: Ações
+      edit: Editar
+      detail: Detalhar
+      delete: Excluir
+      new_page: "Nova Página"
+    card_page_new:
+      new_article: "Novo Artigo"
+      title_label: "Título"
+      description_label: "Descrição"
+      create_publication: "Criar Publicação"
+      to_go_back: "Voltar"
+    card_page_show:
+      detail_article: "Detalhes do Artigo"
+      description: "Descrição"
+      created_at: "Criado em"
+      updated_at: "Atualizado em"
+      edit: "Editar"
+      back: "Voltar"

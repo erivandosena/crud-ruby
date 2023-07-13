@@ -2,7 +2,7 @@
   <!-- Image -->
   <div class="flex h-28 bg-blue-700 rounded-xl items-center justify-center">
     <h1 class="absolute mx-auto text-center right text-2xl text-white">
-      New Article
+      <%= t('shared.card_page_new.new_article') %>
     </h1>
   </div>
 
@@ -12,19 +12,26 @@
 
       <%= form_with(model: @page, url: pages_path, local: true, class: 'row g-3') do |form| %>
         <div class="col-md-6">
-          <%= form.label :title, class: 'block text-sm font-medium text-gray-700' %>
-          <%= form.text_field :title, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' %>
+          <%= form.label :title, t('shared.card_page_new.title_label'), class: 'block text-sm font-medium text-gray-700' %>
+          <%= form.text_field :title, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md', required: true %>
+          <% if @page.errors.has_key?(:title) %>
+            <p class="text-red-500"><%= @page.errors[:title].first %></p>
+          <% end %>
         </div>
         <div class="col-md-6">
-          <%= form.label :description, class: 'block text-sm font-medium text-gray-700' %>
-          <%= form.text_area :description, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md' %>
+          <%= form.label :description, t('shared.card_page_new.description_label'), class: 'block text-sm font-medium text-gray-700' %>
+          <%= form.text_area :description, class: 'mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md', rows: 15, required: true %>
+          <% if @page.errors.has_key?(:description) %>
+            <p class="text-red-500"><%= @page.errors[:description].first %></p>
+          <% end %>
         </div>
         <div class="col-12">
           <button type="submit" class="border-2 border-blue-600 rounded-2xl text-blue-600 shadow-sm p-1 px-2 m-2 cursor-pointer">
-            <%= form.submit 'Create Publication', class: 'text-blue-600 cursor-pointer' %>
+            <%= form.submit t('shared.card_page_new.create_publication'), class: 'text-blue-600 cursor-pointer' %>
           </button>
         </div>
       <% end %>
+      
     </h6>
   </div>
 
@@ -37,10 +44,13 @@
       #React
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
-      #GoLang
+      #Go Lang
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
       #Redux
+    </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Node.js
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
       #PHP
@@ -59,7 +69,7 @@
   <!-- Links -->
   <div class="flex flex-wrap items-center rounded-b-xl border-t-2 bg-white">
     <button class="border rounded-2xl bg-blue-600 text-white shadow-sm p-1 px-2 m-2">
-      <%= link_to 'To go back', pages_path, class: 'text-white' %>
+      <%= link_to t('shared.card_page_new.to_go_back'), pages_path, class: 'text-white' %>
     </button>
   </div>
 </div>

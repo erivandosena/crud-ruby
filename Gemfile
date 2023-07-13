@@ -75,3 +75,9 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'optimist'
+
+gem 'rails-i18n'
+
+gem "turbo-rails"

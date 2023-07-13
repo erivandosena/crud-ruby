@@ -32,7 +32,7 @@ RUN bundle install
 COPY --chown=app:app . .
 
 RUN rm -f config/credentials.yml.enc
-RUN dos2unix bin/rails && EDITOR="echo" bin/rails credentials:edit
+RUN dos2unix bin/* && EDITOR="echo" bin/rails credentials:edit
 RUN SECRET_KEY_BASE=$(bundle exec rake secret)
 RUN bundle exec rake db:create \
     && bundle exec rake db:migrate \
