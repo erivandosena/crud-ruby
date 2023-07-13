@@ -61,11 +61,12 @@ Things you may want to cover:
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-Docker
-Linux Debian
-Ruby
-Bootstrap
-Nginx Server
+Docker  
+Linux Debian  
+Ruby on Rails  
+Tailwind CSS  
+Nginx Server  
+Passenger  
 
 ## Install Docker
 ```bash

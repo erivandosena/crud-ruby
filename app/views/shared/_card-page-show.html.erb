@@ -2,7 +2,7 @@
   <!-- Image -->
   <div class="flex h-28 bg-blue-700 rounded-xl items-center justify-center">
     <h1 class="absolute mx-auto text-center right text-2xl text-white">
-      Detail Article
+      <%= t('shared.card_page_show.detail_article') %>
     </h1>
   </div>
 
@@ -10,13 +10,13 @@
   <div class="p-2 border-b-2">
     <h6>
 
-      <h1><%= @page.title %></h1>
+      <h1 class="text-3xl"><%= @page.title %></h1>
 
-      <p><strong>Description:</strong> <%= @page.description %></p>
+      <p><strong><%= t('shared.card_page_show.description') %>:</strong> <%= @page.description %></p>
 
-      <p><strong>Created At:</strong> <%= @page.created_at %></p>
+      <p><strong><%= t('shared.card_page_show.created_at') %>:</strong> <%= @page.created_at.strftime('%d/%m/%Y %H:%M:%S') %></p>
 
-      <p><strong>Updated At:</strong> <%= @page.updated_at %></p>
+      <p><strong><%= t('shared.card_page_show.updated_at') %>:</strong> <%= @page.updated_at.strftime('%d/%m/%Y %H:%M:%S') %></p>
 
     </h6>
   </div>
@@ -33,13 +33,13 @@
       #React
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
-      #GoLang
+      #Go Lang
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
       #Redux
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
-      #Javascript
+      #JavaScript
     </span>
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
       #Java
@@ -47,15 +47,21 @@
     <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
       #Ruby on Rails
     </span>
+    <span class="border border-blue-300 rounded-2xl px-2 my-1 mx-1">
+      #Node.js
+    </span>
   </div>
 
   <!-- Links -->
   <div class="flex flex-wrap items-center rounded-b-xl border-t-2 bg-white">
     <button class="border rounded-2xl bg-blue-600 text-white shadow-sm p-1 px-2 m-2">
-      <%= link_to 'Edit', edit_page_path(@page) %>
+      <%= link_to t('shared.card_page_show.edit'), edit_page_path(@page) %>
     </button>
     <button class="border rounded-2xl bg-blue-600 text-white shadow-sm p-1 px-2 m-2">
-      <%= link_to 'Back', pages_path %>
+      <%= link_to t('shared.card_page_show.back'), pages_path %>
     </button>
+    <% if @page.present? %>
+      <%= button_to t('shared.card_page_index.delete'), page_path(@page), method: :delete, data: { turbo_confirm: t('confirm_delete')}, class: 'border rounded-2xl bg-red-600 text-white shadow-sm p-1 px-2 m-2', title: t('shared.card_page_index.delete') %>
+    <% end %>
   </div>
 </div>
